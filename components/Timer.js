@@ -11,6 +11,7 @@ class Timer {
     el.className = 'timer';
 
     const timerNameEl = document.createElement('div');
+    timerNameEl.className = 'timer-name';
     timerNameEl.innerText = `${name}`;
     el.appendChild(timerNameEl);
 

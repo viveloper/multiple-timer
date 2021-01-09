@@ -41,21 +41,27 @@ class App {
     });
 
     this.intervalIdMap[timerId] = setInterval(() => {
-      this.updateTimer(timerId);
+      this.decreaseCount(timerId);
     }, 1000);
   };
 
-  updateTimer = (timerId) => {
+  decreaseCount = (timerId) => {
     const targetTimer = this.state.timerList.find(
       (item) => item.id === timerId
     );
     targetTimer.count--;
 
-    const targetTimerEl = document.querySelector(`#timer${timerId}`);
-    const countEl = targetTimerEl.querySelector('.count');
-    countEl.innerText = targetTimer.count;
+    this.updateTimer(targetTimer);
 
     if (targetTimer.count === 0) this.deleteTimer(timerId);
+  };
+
+  updateTimer = (timer) => {
+    const targetTimerEl = document.querySelector(`#timer${timer.id}`);
+    const timerNameEl = targetTimerEl.querySelector('.timer-name');
+    const countEl = targetTimerEl.querySelector('.count');
+    timerNameEl.innerText = timer.name;
+    countEl.innerText = timer.count;
   };
 
   deleteTimer = (timerId) => {
@@ -74,7 +80,19 @@ class App {
   };
 
   completeAll = () => {
-    console.log('complete all');
+    this.setState({
+      timerList: this.state.timerList.map((item) => ({ ...item, count: 0 })),
+    });
+    for (const key in this.intervalIdMap) {
+      clearInterval(this.intervalIdMap[key]);
+      delete this.intervalIdMap[key];
+    }
+    setTimeout(() => {
+      this.setState({
+        timerIdSeqs: 0,
+        timerList: [],
+      });
+    }, 1000);
   };
 
   render() {
