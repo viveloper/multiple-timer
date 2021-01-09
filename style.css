@@ -5,11 +5,11 @@
   align-items: center;
 }
 
-main {
+#main {
   width: 100%;
 }
 
-.timer-list {
+#timer-list {
   padding: 0;
   margin: 20px auto;
   list-style-type: none;
