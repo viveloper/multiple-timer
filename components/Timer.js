@@ -1,12 +1,13 @@
 class Timer {
   constructor(props) {
     this.props = props;
+    this.name = `TimerComponent${this.props.key}`;
   }
   render() {
     const { id, name, count } = this.props.timer;
 
     const el = document.createElement('li');
-    el.id = id;
+    el.id = `timer${id}`;
     el.className = 'timer';
 
     const timerNameEl = document.createElement('div');
@@ -14,6 +15,7 @@ class Timer {
     el.appendChild(timerNameEl);
 
     const countEl = document.createElement('div');
+    countEl.className = 'count';
     countEl.innerText = `${count}`;
     el.appendChild(countEl);
 

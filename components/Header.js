@@ -1,6 +1,7 @@
 class Header {
   constructor(props) {
     this.props = props;
+    this.name = 'HeaderComponent';
   }
 
   handleKeyup = (e) => {
@@ -19,6 +20,7 @@ class Header {
   render() {
     const el = document.createElement('header');
     const inputEl = document.createElement('input');
+    inputEl.autofocus = true;
     inputEl.addEventListener('keyup', this.handleKeyup);
     el.appendChild(inputEl);
     return el;
