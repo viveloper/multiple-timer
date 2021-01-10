@@ -1,3 +1,3 @@
-import App from './components/App.js';
+import MainController from './Controllers/MainController.js';
 
-new App();
+new MainController();
