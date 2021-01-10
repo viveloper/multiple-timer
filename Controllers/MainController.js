@@ -22,7 +22,6 @@ class MainController {
   }
 
   onSubmitCount = (e) => {
-    console.log('Submit Count : ', e.detail.count);
     const { count } = e.detail;
     const idSeqs = this.timerIdSeqs++;
     const timerId = `timer${idSeqs}`;
@@ -59,6 +58,7 @@ class MainController {
       setTimeout(() => {
         this.TimerListView.removeTimer(timerId);
         delete this.timerMap[timerId];
+        this.timerIdSeqs = 0;
       }, 1000);
     }
   };
